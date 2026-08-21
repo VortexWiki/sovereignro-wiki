@@ -15,16 +15,77 @@ anything locally for that to work.
 The styling always comes from that automated build on GitHub, never from your
 own machine.
 
-## Writing a page: use the `{{ }}` macros
+## Two ways to write a page: plain (default) vs styled (rare)
 
-To make styled pages easy to write, this wiki has a small set of macros
-(powered by `mkdocs-macros-plugin`). Instead of hand-writing HTML with CSS
-classes, you call a macro with plain text and it produces the styled block
-for you. This is the recommended way to write a page, and it avoids every
-gotcha of writing raw HTML by hand.
+The wiki uses **plain markdown for almost every page**. Guides, FAQ, dungeon
+info, server info, troubleshooting, anything meant to be read page after
+page, all of that should read like a normal, clean documentation wiki: a
+title, some headings, paragraphs, lists, tables, admonitions. Nothing fancy.
 
-**Easiest path: copy one of the templates in `docs/_templates/`, replace the
-placeholder text, and you're done.**
+A small set of **styled "product" pages** (currently just Download) use the
+official site's richer visual language (red eyebrow labels, accented
+headings, gold buttons, gradient cards). That look is great for a one-off
+landing-style page but gets busy and hard to scan if used on every guide
+page, so it's reserved for pages that are more "marketing" than "reference".
+
+**When in doubt, write plain markdown.** Only reach for the styled macros
+below if you're building something like the Download page.
+
+## Writing a plain content page (the default)
+
+Copy `docs/_templates/page-simple.md` and fill it in. It's just:
+
+```markdown
+---
+title: Page Title
+---
+
+# Page Title
+
+One or two sentences summarizing the page's content.
+
+## First subheading
+
+Your content here. Regular markdown works: **bold**, *italic*,
+[links](https://example.com), `code`, lists, tables, etc.
+```
+
+Useful plain-markdown patterns for this wiki:
+
+**Numbered steps:** just a normal markdown list.
+
+```markdown
+1. Download the client.
+2. Extract the archive.
+3. Run the game.
+```
+
+**Tips / warnings:** use a normal admonition.
+
+```markdown
+!!! tip "Need help?"
+    Join the community Discord to ask questions.
+
+!!! warning "Antivirus false positives"
+    Custom RO clients aren't code-signed, so antivirus software may flag them.
+```
+
+**Collapsible FAQ entries:**
+
+```markdown
+??? question "Is the server free to play?"
+    Yes, the server is fully free to play.
+```
+
+**Tables**, images, and everything else work exactly like any other MkDocs
+page, no special handling needed.
+
+## Writing a styled "product" page (rare)
+
+If you're building a standalone landing-style page (not a guide), this wiki
+has a small set of `{{ }}` macros (powered by `mkdocs-macros-plugin`) that
+produce the site's styled blocks without hand-writing HTML/CSS classes.
+Copy one of `docs/_templates/page-styled-*.md` to start.
 
 ### Available macros
 
@@ -35,29 +96,17 @@ The small red uppercase label above a heading.
 An accented heading. The `accent` part renders in red. Add `level=2` (or 3,
 4...) for a `<h2>`/`<h3>` instead of the default `<h1>`.
 
-```
-{{ heading("How to", accent="Install", level=2) }}
-```
-
 **`{{ intro("Some intro text with a link if you want.") }}`**
 A larger, lighter intro paragraph. HTML like `<a href="...">` works inside
 the text; plain markdown `[link](url)` syntax does not (see limitations
-below), use an `<a>` tag instead.
+below).
 
 **`{{ hero("// Label", "Title", accent="Word", intro_text="...") }}`**
-A centered hero block combining the three macros above, used at the very top
-of a page.
+A centered hero block combining the three macros above.
 
 **`{{ steps([...]) }}`**
-A numbered step list with red numerals.
-
-```
-{{ steps([
-  "<strong>Download</strong> the client.",
-  "<strong>Extract</strong> the archive to a folder.",
-  "<strong>Run</strong> the game."
-]) }}
-```
+A numbered step list with red numerals (the styled version, for product
+pages only, regular guide steps should just be a plain markdown list).
 
 **`{{ tip_list([...]) }}`**
 A bulleted tip list, styled to sit inside a troubleshooting callout.
@@ -66,62 +115,38 @@ A bulleted tip list, styled to sit inside a troubleshooting callout.
 A call-to-action button. Add `style="discord"` for the Discord-blue version
 (default is gold), and `large=True` for a bigger button.
 
-```
-{{ button("Download Full Client", "https://dl.example.com/file.rar") }}
-{{ button("Join Discord", "https://discord.gg/xxx", style="discord", large=True) }}
-```
-
 **`{{ download_card("Title", "Description", "Button text", "https://...") }}`**
 The gold-bordered download card with an icon, title, description, and a
 button. Add `mirror_text="..."` and `mirror_url="..."` for an optional
 backup link underneath.
 
 **`{{ alert_help(alert_title, alert_text, [tips], help_title, help_text, help_button_text, help_button_url) }}`**
-The two-part troubleshooting section: a red alert card (icon + text + tip
-list) followed by a centered help card with a button. See
-`docs/_templates/page-with-alert-and-help.md` for a filled-in example.
+The two-part troubleshooting section: a red alert card followed by a
+centered help card with a button.
 
 ### A note on text inside macros
 
-Macro arguments are plain Python strings, not markdown. That means:
+Macro arguments are plain Python strings, not markdown:
 
 - **Bold/italic**: use `<strong>...</strong>` / `<em>...</em>` instead of
   `**...**` / `*...*`.
 - **Links**: use `<a href="...">...</a>` instead of `[text](url)`.
 - **Inline code**: use `<code>...</code>` instead of `` `text` ``.
 
-This is a small tradeoff for not having to deal with HTML block structure or
-the attr_list bug described below. If a page needs a lot of rich inline
-formatting, consider writing the surrounding paragraphs as normal markdown
-outside the macro calls, and only use macros for the structural blocks
-(headings, steps, cards).
-
-## Regular markdown works everywhere else
-
-Outside of the macro calls, write normal markdown: headings with `##`,
-**bold**, *italic*, `code`, [links](https://example.com), tables, images,
-regular bullet/numbered lists, admonitions (`!!! note`), etc. All of that
-works exactly like any other MkDocs page and needs no special handling.
-
 ## Advanced: writing raw HTML/CSS classes directly
 
-Some existing pages (like `docs/download/index.md`) were written by hand
-with the raw `sov-*` CSS classes before the macros existed, for maximum
-layout control. You generally shouldn't need this for a new page, the
-macros above cover the common cases, but if you do need something the
-macros don't support, keep these rules in mind:
+The existing `docs/download/index.md` was written by hand with the raw
+`sov-*` CSS classes before the macros existed, for maximum layout control.
+You shouldn't need this, the macros above cover the product-page case, but
+if you ever do, keep these rules in mind:
 
 - **Never attach `{: .my-class }` after a markdown list** (`1. ...` or
   `- ...`). It binds to the last `<li>` instead of the whole list. Always
   wrap the list in a `<div class="my-class" markdown>` block instead.
 - **Add the `markdown` attribute** on any `<div>`/`<section>`/`<p>` tag that
-  contains markdown syntax (bold, links, lists), otherwise it won't be
-  converted to HTML.
+  contains markdown syntax, otherwise it won't be converted to HTML.
 - **Leave a blank line** before and after markdown content inside a
   `<div markdown>` block.
-
-Reach out before doing this if you're not sure, it's easy to end up with a
-page that looks broken.
 
 ## Previewing locally (optional)
 
