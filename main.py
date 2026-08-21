@@ -191,3 +191,36 @@ def define_env(env):
             "</div>"
             "</div>"
         )
+
+    @env.macro
+    def spec_table(rows, callout=None):
+        """Gold-bordered key/value spec table (server rates, episode, etc.),
+        matching the download card's visual language. The last row is
+        rendered as a highlighted "final word" row (e.g. Monetization);
+        every other row is a plain label/value pair.
+
+        {{ spec_table([
+             ("Episode / Mode", "Renewal &mdash; 4th Job &amp; higher"),
+             ("Base EXP rate", "7&times;"),
+             ("Job EXP rate", "7&times;"),
+             ("Item drop rate", "4&times;"),
+             ("Card drop rate", "10&times;"),
+             ("Monetization", "Cosmetics-only &mdash; no pay-to-win"),
+             ("Anti-cheat", "BeamGuard (Gepard-style client protection)"),
+           ], callout="Spend on looks, never on power...") }}
+        """
+        rows_html = "".join(
+            f'<tr><th scope="row">{_esc(label)}</th><td>{value}</td></tr>'
+            for label, value in rows
+        )
+        callout_html = (
+            f'<p class="sov-spec-callout">{callout}</p>' if callout else ""
+        )
+        return Markup(
+            '<div class="sov-spec-table-wrap">'
+            '<table class="sov-spec-table">'
+            f"<tbody>{rows_html}</tbody>"
+            "</table>"
+            f"{callout_html}"
+            "</div>"
+        )
