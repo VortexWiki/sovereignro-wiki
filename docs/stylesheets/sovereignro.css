@@ -118,6 +118,16 @@ input {
   }
 }
 
+/* .md-header__inner is also .md-grid, so the max-width change above
+   leaves it touching the edges of the viewport with zero breathing room.
+   Give the header its own comfortable side padding instead of relying on
+   .md-grid's own margins. (The footer's own padding override further
+   down this file, .md-footer-meta__inner.md-grid, is adjusted to match.) */
+.md-header__inner.md-grid {
+  padding-left: 1.25rem;
+  padding-right: 1.5rem;
+}
+
 /* -------------------------------------------------------------------------
    Header
    ------------------------------------------------------------------------- */
@@ -625,7 +635,8 @@ input {
 .md-footer-meta__inner.md-grid {
   display: block;
   max-width: none;
-  padding: 0;
+  padding-left: 1.25rem;
+  padding-right: 1.5rem;
 }
 
 .footer {
