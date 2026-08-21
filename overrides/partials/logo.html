@@ -1,0 +1,21 @@
+{#-
+  Custom SovereignRO logo, matching the official site's real markup/CSS
+  exactly (inspected via devtools on the live site):
+    <a class="sov-brand">
+      <span class="sov-brand-mark">S</span>
+      <span class="sov-brand-text">Sovereign<span class="sov-brand-accent">RO</span></span>
+    </a>
+  Font: Sora, weight 800 (--weight-extrabold), size 1.125rem (--text-lg),
+  letter-spacing -0.02em (--tracking-tight). Mark: 34x34px, radius 4px
+  (--radius-md), gradient 135deg #E53946 -> #9B1E27 (--crimson ->
+  --crimend-deep), shadow --shadow-crimson + --shadow-inset.
+  A separate red "WIKI" pill badge is added after the wordmark (the real
+  site has no such badge; this is our wiki-specific addition).
+-#}
+<span class="sr-logo" aria-hidden="true">
+  <span class="sr-logo-mark">S</span>
+  <span class="sr-logo-text">
+    <span class="sr-logo-text-white">Sovereign</span><span class="sr-logo-text-red">RO</span>
+  </span>
+  <span class="sr-logo-wiki-badge">WIKI</span>
+</span>

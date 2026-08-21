@@ -1,0 +1,88 @@
+site_name: SovereignRO Wiki
+site_description: Community documentation and guides for SovereignRO
+site_url: https://wiki.sovereignro.com
+repo_url: https://github.com/VortexWiki/sovereignro-wiki
+repo_name: sovereignro-wiki
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - scheme: sovereignro
+  font: false
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+    - content.tooltips
+
+exclude_docs: |
+  _templates/
+
+plugins:
+  - search
+  - macros
+
+extra_css:
+  - stylesheets/sovereignro.css
+
+extra_javascript:
+  - assets/js/sovereignro.js
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+  - attr_list
+  - md_in_html
+  - tables
+
+nav:
+  - SovereignRO:
+      - server-info/index.md
+      - Patch Notes: patch-notes/index.md
+      - Download: download/index.md
+  - Getting Started:
+      - getting-started/index.md
+      - Installation: installation/index.md
+      - Beginner Guide: beginner-guide/index.md
+  - Feature Highlights:
+      - feature-highlights/index.md
+  - Server Perks:
+      - server-perks/index.md
+  - Player's Guide:
+      - players-guide/index.md
+  - Dungeons & Instances:
+      - dungeons-instances/index.md
+  - Events & Activities:
+      - events-activities/index.md
+  - Help:
+      - FAQ: faq/index.md
+      - Troubleshooting: troubleshooting/index.md
+  - Discord: https://discord.com/invite/eog
+
+extra:
+  social:
+    - icon: fontawesome/brands/discord
+      link: https://discord.com/invite/eog
