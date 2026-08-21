@@ -38,9 +38,6 @@ plugins:
 extra_css:
   - stylesheets/sovereignro.css
 
-extra_javascript:
-  - assets/js/sovereignro.js
-
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -61,7 +58,6 @@ markdown_extensions:
 nav:
   - SovereignRO:
       - server-info/index.md
-      - Patch Notes: patch-notes/index.md
       - Download: download/index.md
   - Getting Started:
       - getting-started/index.md
