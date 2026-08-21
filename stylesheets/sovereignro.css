@@ -98,6 +98,27 @@ input {
 }
 
 /* -------------------------------------------------------------------------
+   Full-width, responsive layout
+   Material's default .md-grid caps everything (header content, page
+   content, footer) at 61rem and centers it, which leaves a large empty
+   gap on wide screens since the sidebar sits to the left of that capped
+   grid instead of the layout using the full viewport. Raise the cap so
+   the header, sidebar, and content all stretch to fill wide screens,
+   while keeping the wiki readable, and still shrinking properly on
+   narrower/mobile screens since this is a max-width, not a fixed width.
+   ------------------------------------------------------------------------- */
+
+.md-grid {
+  max-width: 100%;
+}
+
+@media screen and (min-width: 100em) {
+  .md-grid {
+    max-width: 120rem;
+  }
+}
+
+/* -------------------------------------------------------------------------
    Header
    ------------------------------------------------------------------------- */
 
