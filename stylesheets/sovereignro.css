@@ -883,6 +883,90 @@ input {
 }
 
 /* -------------------------------------------------------------------------
+   Spec table: gold-bordered key/value panel for server stats (rates,
+   episode, monetization, anti-cheat, etc). Matches the download card's
+   visual language (dark card, gold border + glow), with red row labels
+   as the accent instead of a red border.
+   ------------------------------------------------------------------------- */
+
+.sov-spec-table-wrap {
+  margin: 0 0 2rem;
+}
+
+.md-typeset table.sov-spec-table {
+  width: 100%;
+  margin: 0;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), var(--sr-bg-card));
+  border: 1px solid var(--sr-gold);
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.18);
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.md-typeset table.sov-spec-table tr {
+  background-color: transparent;
+}
+
+.md-typeset table.sov-spec-table tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.md-typeset table.sov-spec-table tr:not(:last-child) th,
+.md-typeset table.sov-spec-table tr:not(:last-child) td {
+  border-bottom: 1px solid var(--sr-border);
+}
+
+.md-typeset table.sov-spec-table th,
+.md-typeset table.sov-spec-table td {
+  padding: 0.85rem 1.5rem;
+}
+
+.md-typeset table.sov-spec-table th[scope="row"] {
+  width: 40%;
+  text-align: left;
+  font-family: "Sora", system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--sr-red-light);
+}
+
+.md-typeset table.sov-spec-table td {
+  color: var(--sr-text);
+  font-size: 0.95rem;
+}
+
+.md-typeset table.sov-spec-table td code {
+  background-color: var(--sr-bg-elevated);
+  border: 1px solid var(--sr-border);
+  color: var(--sr-gold);
+}
+
+.sov-spec-callout {
+  margin: 1rem 0 0 0;
+  padding: 0.75rem 1.1rem;
+  border-left: 3px solid var(--sr-gold);
+  background-color: var(--sr-gold-soft);
+  border-radius: 0 8px 8px 0;
+  color: var(--sr-gold-strong);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 640px) {
+  .md-typeset table.sov-spec-table th[scope="row"] {
+    width: auto;
+  }
+
+  .md-typeset table.sov-spec-table th,
+  .md-typeset table.sov-spec-table td {
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* -------------------------------------------------------------------------
    Search
    ------------------------------------------------------------------------- */
 
