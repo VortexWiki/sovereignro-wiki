@@ -98,52 +98,6 @@ input {
 }
 
 /* -------------------------------------------------------------------------
-   Full-width, responsive layout
-   Material's default .md-grid caps everything (header content, page
-   content, footer) at 61rem and centers it, which leaves a large empty
-   gap on wide screens since the sidebar sits to the left of that capped
-   grid instead of the layout using the full viewport. Raise the cap so
-   the header, sidebar, and content all stretch to fill wide screens,
-   while keeping the wiki readable, and still shrinking properly on
-   narrower/mobile screens since this is a max-width, not a fixed width.
-   ------------------------------------------------------------------------- */
-
-.md-grid {
-  max-width: 100%;
-}
-
-@media screen and (min-width: 100em) {
-  .md-grid {
-    max-width: 120rem;
-  }
-}
-
-/* .md-header__inner and .md-main__inner (which wraps the sidebar +
-   content + TOC) are also .md-grid, so the max-width change above leaves
-   them touching the edges of the viewport with zero breathing room.
-   Give them the same comfortable side padding so the header, page
-   content, and footer all line up on the same left/right edges instead
-   of drifting out of alignment with each other. (The footer's own
-   padding override further down this file, .md-footer-meta__inner.md-grid,
-   is adjusted to match these same values.) */
-.md-header__inner.md-grid,
-.md-main__inner.md-grid {
-  padding-left: 1.25rem;
-  padding-right: 1.5rem;
-}
-
-/* Material also gives .md-content__inner its own fixed left/right margin
-   (1.2rem) on top of whatever padding its .md-main__inner parent has.
-   That stacked margin pushed the page content's right edge noticeably
-   further from the viewport edge than the header/footer, since those
-   don't have an equivalent nested margin. Zero it out here so the
-   content's edge lines up with the header and footer above/below it. */
-.md-content__inner {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-/* -------------------------------------------------------------------------
    Header
    ------------------------------------------------------------------------- */
 
@@ -650,8 +604,7 @@ input {
 .md-footer-meta__inner.md-grid {
   display: block;
   max-width: none;
-  padding-left: 1.25rem;
-  padding-right: 1.5rem;
+  padding: 0;
 }
 
 .footer {
