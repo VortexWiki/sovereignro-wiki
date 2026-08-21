@@ -118,14 +118,29 @@ input {
   }
 }
 
-/* .md-header__inner is also .md-grid, so the max-width change above
-   leaves it touching the edges of the viewport with zero breathing room.
-   Give the header its own comfortable side padding instead of relying on
-   .md-grid's own margins. (The footer's own padding override further
-   down this file, .md-footer-meta__inner.md-grid, is adjusted to match.) */
-.md-header__inner.md-grid {
+/* .md-header__inner and .md-main__inner (which wraps the sidebar +
+   content + TOC) are also .md-grid, so the max-width change above leaves
+   them touching the edges of the viewport with zero breathing room.
+   Give them the same comfortable side padding so the header, page
+   content, and footer all line up on the same left/right edges instead
+   of drifting out of alignment with each other. (The footer's own
+   padding override further down this file, .md-footer-meta__inner.md-grid,
+   is adjusted to match these same values.) */
+.md-header__inner.md-grid,
+.md-main__inner.md-grid {
   padding-left: 1.25rem;
   padding-right: 1.5rem;
+}
+
+/* Material also gives .md-content__inner its own fixed left/right margin
+   (1.2rem) on top of whatever padding its .md-main__inner parent has.
+   That stacked margin pushed the page content's right edge noticeably
+   further from the viewport edge than the header/footer, since those
+   don't have an equivalent nested margin. Zero it out here so the
+   content's edge lines up with the header and footer above/below it. */
+.md-content__inner {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 /* -------------------------------------------------------------------------
