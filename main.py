@@ -272,13 +272,11 @@ def define_env(env):
                 sprite_path = f"../assets/sprites/npcs/{sprite_folder}/{npc['sprite']}"
                 rows_html += (
                     '<tr class="sov-npc-row">'
-                    '<td class="sov-npc-cell-sprite">'
+                    '<td class="sov-npc-cell-npc">'
                     '<div class="sov-npc-cell-sprite-inner">'
                     f'<img src="{_esc(sprite_path)}" alt="{_esc(npc["name"])}" loading="lazy">'
                     f'<span class="sov-npc-name">{_esc(npc["name"])}</span>'
                     "</div>"
-                    "</td>"
-                    '<td class="sov-npc-cell-navi">'
                     '<div class="highlight"><pre><span></span><code>'
                     f"{_esc(npc['navi'])}"
                     "</code></pre></div>"
@@ -295,7 +293,7 @@ def define_env(env):
                     '<div class="sov-npc-table-wrap">'
                     '<table class="sov-npc-table">'
                     "<thead><tr>"
-                    "<th>NPC</th><th>Location</th><th>Description</th>"
+                    "<th>NPC</th><th>Description</th>"
                     "</tr></thead>"
                     f"<tbody>{_rows_html(section['npcs'], section['sprite_folder'])}</tbody>"
                     "</table>"
