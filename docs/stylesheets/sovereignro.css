@@ -268,6 +268,26 @@ a.md-nav__link[href^="https://discord.com/"]::before {
   mask-size: contain;
 }
 
+/* Same technique for the "MVP Tracker" entry under Tools: also an external
+   link (a separate GitHub Pages app, not a wiki page), so no frontmatter to
+   hang an `icon:` off of. Uses the "target" glyph, matching the Target icon
+   already used for Active Hunt in the tracker app itself. */
+a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::before {
+  content: "";
+  display: inline-block;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+  background-color: var(--sr-gold);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M11%202v2.07A8%208%200%200%200%204.07%2011H2v2h2.07A8%208%200%200%200%2011%2019.93V22h2v-2.07A8%208%200%200%200%2019.93%2013H22v-2h-2.07A8%208%200%200%200%2013%204.07V2m-2%204.08V8h2V6.09c2.5.41%204.5%202.41%204.92%204.91H16v2h1.91c-.41%202.5-2.41%204.5-4.91%204.92V16h-2v1.91C8.5%2017.5%206.5%2015.5%206.08%2013H8v-2H6.09C6.5%208.5%208.5%206.5%2011%206.08M12%2011a1%201%200%200%200-1%201%201%201%200%200%200%201%201%201%201%200%200%200%201-1%201%201%200%200%200-1-1%22/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M11%202v2.07A8%208%200%200%200%204.07%2011H2v2h2.07A8%208%200%200%200%2011%2019.93V22h2v-2.07A8%208%200%200%200%2019.93%2013H22v-2h-2.07A8%208%200%200%200%2013%204.07V2m-2%204.08V8h2V6.09c2.5.41%204.5%202.41%204.92%204.91H16v2h1.91c-.41%202.5-2.41%204.5-4.91%204.92V16h-2v1.91C8.5%2017.5%206.5%2015.5%206.08%2013H8v-2H6.09C6.5%208.5%208.5%206.5%2011%206.08M12%2011a1%201%200%200%200-1%201%201%201%200%200%200%201%201%201%201%200%200%200%201-1%201%201%200%200%200-1-1%22/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
 /* -------------------------------------------------------------------------
    Content / cards / admonitions
    ------------------------------------------------------------------------- */

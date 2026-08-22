@@ -59,7 +59,7 @@ nav:
   - SovereignRO:
       - server-info/index.md
       - Download: download/index.md
-  - Getting Started:
+  - Your Journey:
       - getting-started/index.md
       - Installation: installation/index.md
       - Beginner Guide: beginner-guide/index.md
@@ -73,6 +73,8 @@ nav:
       - dungeons-instances/index.md
   - Events & Activities:
       - events-activities/index.md
+  - Tools:
+      - MVP Tracker: https://vortexwiki.github.io/sovereignro-mvp-tracker/
   - Help:
       - FAQ: faq/index.md
       - Troubleshooting: troubleshooting/index.md
