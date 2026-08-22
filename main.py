@@ -13,7 +13,21 @@ they return raw HTML strings that get inserted where the {{ ... }} call
 appears in the markdown source, before the markdown/HTML is parsed.
 """
 
+import os
+import sys
+
 from markupsafe import Markup
+
+# mkdocs-macros-plugin imports this file as a module named "main" after
+# adding the current working directory to sys.path, which normally makes
+# sibling packages (like data/) importable. But that only works if mkdocs
+# build is actually invoked from the repo root; if the CWD differs for any
+# reason (a different working-directory in CI, a wrapper script, etc.) the
+# import below fails, and the plugin swallows the exception and silently
+# logs "No default module `main` found" instead of a real traceback. Force
+# the repo root (this file's own directory) onto sys.path explicitly so the
+# import is robust regardless of CWD.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from data.npcs import NPCS
 
