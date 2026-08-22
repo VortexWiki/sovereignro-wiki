@@ -29,7 +29,7 @@ from markupsafe import Markup
 # import is robust regardless of CWD.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from data.npcs import NPCS
+from data.npcs import SECTIONS
 
 
 def _esc(text):
@@ -243,10 +243,10 @@ def define_env(env):
 
     @env.macro
     def npc_table():
-        """Important NPCs table: sprite + name, a one-click-to-copy /navi
-        command, and a rich-text description. Reads its rows from
-        data/npcs.py (NPCS list) so new NPCs can be added there without
-        touching this macro or the page markdown.
+        """Important NPCs, grouped into one heading + table per location.
+        Reads its sections from data/npcs.py (SECTIONS list) so new NPCs
+        (or whole new sections) can be added there without touching this
+        macro or the page markdown.
 
         {{ npc_table() }}
 
@@ -256,39 +256,53 @@ def define_env(env):
         enabled in mkdocs.yml) picks it up automatically on hover, with
         zero custom JS.
         """
-        if not NPCS:
-            return Markup(
-                '<p class="sov-npc-table-empty">'
-                "<em>No NPCs added yet.</em></p>"
-            )
 
-        rows_html = ""
-        for npc in NPCS:
-            sprite_path = f"../assets/sprites/npcs/{npc['sprite']}"
-            rows_html += (
-                '<tr class="sov-npc-row">'
-                '<td class="sov-npc-cell-sprite">'
-                '<div class="sov-npc-cell-sprite-inner">'
-                f'<img src="{_esc(sprite_path)}" alt="{_esc(npc["name"])}" loading="lazy">'
-                f'<span class="sov-npc-name">{_esc(npc["name"])}</span>'
+        def _rows_html(npcs):
+            rows_html = ""
+            for npc in npcs:
+                sprite_path = f"../assets/sprites/npcs/{npc['sprite']}"
+                rows_html += (
+                    '<tr class="sov-npc-row">'
+                    '<td class="sov-npc-cell-sprite">'
+                    '<div class="sov-npc-cell-sprite-inner">'
+                    f'<img src="{_esc(sprite_path)}" alt="{_esc(npc["name"])}" loading="lazy">'
+                    f'<span class="sov-npc-name">{_esc(npc["name"])}</span>'
+                    "</div>"
+                    "</td>"
+                    '<td class="sov-npc-cell-navi">'
+                    '<div class="highlight"><pre><span></span><code>'
+                    f"{_esc(npc['navi'])}"
+                    "</code></pre></div>"
+                    "</td>"
+                    f'<td class="sov-npc-cell-desc">{npc["description"]}</td>'
+                    "</tr>"
+                )
+            return rows_html
+
+        sections_html = ""
+        for section in SECTIONS:
+            if section["npcs"]:
+                body_html = (
+                    '<div class="sov-npc-table-wrap">'
+                    '<table class="sov-npc-table">'
+                    "<thead><tr>"
+                    "<th>NPC</th><th>Location</th><th>Description</th>"
+                    "</tr></thead>"
+                    f"<tbody>{_rows_html(section['npcs'])}</tbody>"
+                    "</table>"
+                    "</div>"
+                )
+            else:
+                body_html = (
+                    '<p class="sov-npc-table-empty">'
+                    "<em>No NPCs added yet.</em></p>"
+                )
+
+            sections_html += (
+                '<div class="sov-npc-section">'
+                f'<h2 class="sov-npc-section-title">{_esc(section["title"])}</h2>'
+                f"{body_html}"
                 "</div>"
-                "</td>"
-                '<td class="sov-npc-cell-navi">'
-                '<div class="highlight"><pre><span></span><code>'
-                f"{_esc(npc['navi'])}"
-                "</code></pre></div>"
-                "</td>"
-                f'<td class="sov-npc-cell-desc">{npc["description"]}</td>'
-                "</tr>"
             )
 
-        return Markup(
-            '<div class="sov-npc-table-wrap">'
-            '<table class="sov-npc-table">'
-            "<thead><tr>"
-            "<th>NPC</th><th>Location</th><th>Description</th>"
-            "</tr></thead>"
-            f"<tbody>{rows_html}</tbody>"
-            "</table>"
-            "</div>"
-        )
+        return Markup(sections_html)

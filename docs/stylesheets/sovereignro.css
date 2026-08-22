@@ -1026,6 +1026,20 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
    Important NPCs table
    ------------------------------------------------------------------------- */
 
+.sov-npc-section {
+  margin: 0 0 2.5rem;
+}
+
+.sov-npc-section-title {
+  font-family: "Sora", system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--sr-gold);
+  margin: 0 0 0.9rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--sr-border);
+}
+
 .sov-npc-table-wrap {
   margin: 0 0 2rem;
   border: 1px solid var(--sr-border);
@@ -1146,9 +1160,13 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
 }
 
 .sov-npc-table-empty {
+  margin: 0;
   padding: 1.5rem;
   color: var(--sr-text-muted);
   text-align: center;
+  border: 1px solid var(--sr-border);
+  border-radius: 12px;
+  background: var(--sr-bg-card);
 }
 
 @media (max-width: 720px) {

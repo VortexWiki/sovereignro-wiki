@@ -1,7 +1,12 @@
 """
 Data source for the "Important NPCs" page (Server Perks section).
 
-Add a new NPC by appending a dict to NPCS below. Fields:
+NPCs are grouped into sections by location (Eden Main Town, Quest Hub,
+Eden Grand Market, Evenil's Casino, etc). Each section renders as its own
+heading + table on the page, in the order SECTIONS is defined below.
+
+Add a new NPC by appending a dict to the right section's "npcs" list.
+Fields:
 
   name         Display name shown under the sprite and as the row's bold
                label inside the description (you still need to bold it
@@ -16,7 +21,8 @@ Add a new NPC by appending a dict to NPCS below. Fields:
                Not run through markdown, so no *bold* / [text](url) syntax
                here, only raw HTML tags.
 
-Order in this list is the order rows render in the table.
+To add a brand new section, add a new {"title": "...", "npcs": [...]}
+dict to SECTIONS, in the position you want it to appear on the page.
 
 Example entry (commented out, not real data):
 
@@ -30,11 +36,28 @@ Example entry (commented out, not real data):
   },
 """
 
-NPCS = [
+SECTIONS = [
     {
-        "name": "Expert Helper Magnus",
-        "sprite": "Expert_Helper_Magnus.gif",
-        "navi": "/navi eden_night 80/112",
-        "description": "<em>(description on hold)</em>",
+        "title": "Eden Main Town",
+        "npcs": [
+            {
+                "name": "Expert Helper Magnus",
+                "sprite": "Expert_Helper_Magnus.gif",
+                "navi": "/navi eden_night 80/112",
+                "description": "<em>(description on hold)</em>",
+            },
+        ],
+    },
+    {
+        "title": "Quest Hub",
+        "npcs": [],
+    },
+    {
+        "title": "Eden Grand Market",
+        "npcs": [],
+    },
+    {
+        "title": "Evenil's Casino",
+        "npcs": [],
     },
 ]
