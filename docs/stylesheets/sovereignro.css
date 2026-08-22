@@ -1080,13 +1080,13 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90px;
+  width: 110px;
 }
 
 .sov-npc-cell-sprite img {
   display: block;
-  width: 64px;
-  height: 64px;
+  width: 96px;
+  height: 96px;
   margin-bottom: 0.4rem;
   object-fit: contain;
   image-rendering: pixelated;
@@ -1116,11 +1116,25 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
   background-color: var(--sr-bg-elevated);
   border: 1px solid var(--sr-border);
   border-radius: 6px;
+  /* Material's copy button (.md-code__nav) sits at top: .25em; right: .25em
+     inside this <pre>, absolutely positioned. On a short single-line
+     command like ours it has no room of its own and ends up sitting on
+     top of the last characters instead of beside them. Reserve space for
+     it on the right so the code text always wraps before that zone. */
+  padding-right: 2.25rem;
 }
 
 .sov-npc-cell-navi .highlight code {
   color: var(--sr-gold);
   font-size: 0.82rem;
+}
+
+.sov-npc-cell-navi .md-code__nav {
+  /* Keep the button vertically centered against the single line of text
+     instead of pinned to the top, now that the <pre> has extra right
+     padding to make room for it. */
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .sov-npc-cell-desc a {
