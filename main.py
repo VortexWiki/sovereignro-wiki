@@ -264,7 +264,7 @@ def define_env(env):
 
         rows_html = ""
         for npc in NPCS:
-            sprite_path = f"../../assets/sprites/npcs/{npc['sprite']}"
+            sprite_path = f"../assets/sprites/npcs/{npc['sprite']}"
             rows_html += (
                 '<tr class="sov-npc-row">'
                 '<td class="sov-npc-cell-sprite">'

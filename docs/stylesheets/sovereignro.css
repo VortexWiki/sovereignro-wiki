@@ -54,7 +54,10 @@
   --md-typeset-a-color: var(--sr-gold);
 
   --md-code-bg-color: var(--sr-bg-card);
+  --md-code-bg-color--light: var(--sr-bg-elevated);
+  --md-code-bg-color--lighter: var(--sr-bg-elevated);
   --md-code-fg-color: #e3b341;
+  --md-default-fg-color--lightest: var(--sr-gold-soft);
 
   --md-footer-bg-color: var(--sr-bg-elevated);
   --md-footer-bg-color--dark: var(--sr-bg);
