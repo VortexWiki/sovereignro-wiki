@@ -250,11 +250,13 @@ def define_env(env):
 
         {{ npc_table() }}
 
-        The /navi cell is built as a real Material "highlight" code block
-        (the same markup pymdownx.superfences/highlight produce), so
-        Material's native copy-code button (content.code.copy, already
-        enabled in mkdocs.yml) picks it up automatically on hover, with
-        zero custom JS.
+        The /navi value is never shown as text -- it's copied straight to
+        the clipboard by a small "Navigation" button (data-navi carries the
+        real command). This keeps the narrow NPC column from having to fit
+        a long /navi string, and is a nicer click target than a code block
+        anyway. The actual copy behaviour is wired up by the tiny inline
+        script this macro also emits (once per page, guarded so multiple
+        {{ npc_table() }} calls -- or repeated sections -- don't double up).
 
         Each section's heading is emitted as a real "## Title" markdown
         line (not a raw <h2>), and its wrapping <div> carries the
@@ -277,9 +279,8 @@ def define_env(env):
                     f'<img src="{_esc(sprite_path)}" alt="{_esc(npc["name"])}" loading="lazy">'
                     f'<span class="sov-npc-name">{_esc(npc["name"])}</span>'
                     "</div>"
-                    '<div class="highlight"><pre><span></span><code>'
-                    f"{_esc(npc['navi'])}"
-                    "</code></pre></div>"
+                    '<button type="button" class="sov-npc-navi-btn" '
+                    f'data-navi="{_esc(npc["navi"])}">Navigation</button>'
                     "</td>"
                     f'<td class="sov-npc-cell-desc">{npc["description"]}</td>'
                     "</tr>"
@@ -312,4 +313,32 @@ def define_env(env):
                 "\n\n</div>\n\n"
             )
 
-        return Markup(sections_html)
+        # Wires up every .sov-npc-navi-btn on the page: click copies its
+        # data-navi value to the clipboard and flips the button's label to
+        # a confirmation for a moment. One listener via delegation (not one
+        # per button) so this stays cheap even with dozens of NPCs, and a
+        # window flag guards against attaching it twice if npc_table() is
+        # ever called more than once on the same page.
+        script_html = (
+            "<script>"
+            "if (!window.__sovNpcNaviWired) {"
+            "window.__sovNpcNaviWired = true;"
+            "document.addEventListener('click', function (e) {"
+            "var btn = e.target.closest('.sov-npc-navi-btn');"
+            "if (!btn) return;"
+            "var navi = btn.getAttribute('data-navi');"
+            "navigator.clipboard.writeText(navi).then(function () {"
+            "var original = btn.textContent;"
+            "btn.textContent = 'Copied!';"
+            "btn.classList.add('sov-npc-navi-btn--copied');"
+            "setTimeout(function () {"
+            "btn.textContent = original;"
+            "btn.classList.remove('sov-npc-navi-btn--copied');"
+            "}, 1500);"
+            "});"
+            "});"
+            "}"
+            "</script>"
+        )
+
+        return Markup(sections_html + script_html)
