@@ -1093,19 +1093,19 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
   font-size: 0.92rem;
 }
 
-.sov-npc-cell-sprite {
-  width: 1%;
-  white-space: nowrap;
+.sov-npc-cell-npc {
+  width: 260px;
+  min-width: 220px;
 }
 
 .sov-npc-cell-sprite-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 110px;
+  margin-bottom: 0.75rem;
 }
 
-.sov-npc-cell-sprite img {
+.sov-npc-cell-npc img {
   display: block;
   width: 96px;
   height: 96px;
@@ -1124,16 +1124,11 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
   white-space: normal;
 }
 
-.sov-npc-cell-navi {
-  width: 1%;
-  white-space: nowrap;
-}
-
-.sov-npc-cell-navi .highlight {
+.sov-npc-cell-npc .highlight {
   margin: 0;
 }
 
-.sov-npc-cell-navi .highlight pre {
+.sov-npc-cell-npc .highlight pre {
   margin: 0;
   background-color: var(--sr-bg-elevated);
   border: 1px solid var(--sr-border);
@@ -1144,14 +1139,15 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
      top of the last characters instead of beside them. Reserve space for
      it on the right so the code text always wraps before that zone. */
   padding-right: 2.25rem;
+  white-space: nowrap;
 }
 
-.sov-npc-cell-navi .highlight code {
+.sov-npc-cell-npc .highlight code {
   color: var(--sr-gold);
   font-size: 0.82rem;
 }
 
-.sov-npc-cell-navi .md-code__nav {
+.sov-npc-cell-npc .md-code__nav {
   /* Keep the button vertically centered against the single line of text
      instead of pinned to the top, now that the <pre> has extra right
      padding to make room for it. */
@@ -1160,7 +1156,7 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
 }
 
 .sov-npc-cell-desc {
-  min-width: 200px;
+  min-width: 280px;
 }
 
 .sov-npc-cell-desc a {
@@ -1201,12 +1197,20 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
     padding: 1rem 0;
   }
 
-  .sov-npc-cell-sprite {
-    text-align: left;
+  .sov-npc-cell-npc {
+    width: auto;
   }
 
-  .sov-npc-cell-sprite img {
+  .sov-npc-cell-sprite-inner {
+    align-items: flex-start;
+  }
+
+  .sov-npc-cell-npc img {
     margin: 0 0 0.4rem;
+  }
+
+  .sov-npc-name {
+    text-align: left;
   }
 }
 
