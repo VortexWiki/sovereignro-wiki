@@ -1,8 +1,6 @@
 ---
-title: Download
+title: Download & Installation
 icon: material/download
-hide:
-  - toc
 ---
 
 <section class="sov-page-hero" markdown>
