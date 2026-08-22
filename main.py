@@ -257,10 +257,10 @@ def define_env(env):
         zero custom JS.
         """
 
-        def _rows_html(npcs):
+        def _rows_html(npcs, sprite_folder):
             rows_html = ""
             for npc in npcs:
-                sprite_path = f"../assets/sprites/npcs/{npc['sprite']}"
+                sprite_path = f"../assets/sprites/npcs/{sprite_folder}/{npc['sprite']}"
                 rows_html += (
                     '<tr class="sov-npc-row">'
                     '<td class="sov-npc-cell-sprite">'
@@ -288,7 +288,7 @@ def define_env(env):
                     "<thead><tr>"
                     "<th>NPC</th><th>Location</th><th>Description</th>"
                     "</tr></thead>"
-                    f"<tbody>{_rows_html(section['npcs'])}</tbody>"
+                    f"<tbody>{_rows_html(section['npcs'], section['sprite_folder'])}</tbody>"
                     "</table>"
                     "</div>"
                 )

@@ -11,7 +11,8 @@ Fields:
   name         Display name shown under the sprite and as the row's bold
                label inside the description (you still need to bold it
                yourself in `description`, this isn't automatic).
-  sprite       Filename only, relative to docs/assets/sprites/npcs/.
+  sprite       Filename only, relative to
+               docs/assets/sprites/npcs/<section's sprite_folder>/.
                Drop the actual .png/.gif into that folder with this exact
                name. If the file is missing, the table just shows a blank
                sprite slot instead of breaking the build.
@@ -21,8 +22,18 @@ Fields:
                Not run through markdown, so no *bold* / [text](url) syntax
                here, only raw HTML tags.
 
-To add a brand new section, add a new {"title": "...", "npcs": [...]}
-dict to SECTIONS, in the position you want it to appear on the page.
+Each section also needs:
+
+  title           Heading shown above the section's table.
+  sprite_folder   Folder name under docs/assets/sprites/npcs/ where this
+                   section's sprite files live (e.g. "Eden_Main_Town").
+                   Kept separate from `title` so an apostrophe or special
+                   character in the title (like "Evenil's Casino") never
+                   has to become part of a folder name.
+
+To add a brand new section, add a new
+{"title": "...", "sprite_folder": "...", "npcs": [...]} dict to SECTIONS,
+in the position you want it to appear on the page.
 
 Example entry (commented out, not real data):
 
@@ -36,9 +47,16 @@ Example entry (commented out, not real data):
   },
 """
 
+# Shared placeholder shown for NPCs whose real /navi and description
+# haven't been provided yet. Swap these two fields out per-NPC as the
+# real data comes in; the sprite is already the real uploaded file.
+_TBD_NAVI = "/navi (à venir)"
+_TBD_DESC = "<em>(description à venir)</em>"
+
 SECTIONS = [
     {
         "title": "Eden Main Town",
+        "sprite_folder": "Eden_Main_Town",
         "npcs": [
             {
                 "name": "Expert Helper Magnus",
@@ -46,18 +64,63 @@ SECTIONS = [
                 "navi": "/navi eden_night 80/112",
                 "description": "<em>(description on hold)</em>",
             },
+            {
+                "name": "Donation Point Exchange",
+                "sprite": "Donation_Point_Exchange.gif",
+                "navi": _TBD_NAVI,
+                "description": _TBD_DESC,
+            },
+            {
+                "name": "Kafra Hilda",
+                "sprite": "Kafra_Hilda.gif",
+                "navi": _TBD_NAVI,
+                "description": _TBD_DESC,
+            },
+            {
+                "name": "Newbie Helper Luna",
+                "sprite": "Newbie_Helper_Luna.gif",
+                "navi": _TBD_NAVI,
+                "description": _TBD_DESC,
+            },
+            {
+                "name": "Promo Code",
+                "sprite": "Promo_Code.gif",
+                "navi": _TBD_NAVI,
+                "description": _TBD_DESC,
+            },
+            {
+                "name": "Tool Dealer",
+                "sprite": "Tool_Dealer.gif",
+                "navi": _TBD_NAVI,
+                "description": _TBD_DESC,
+            },
+            {
+                "name": "Vote Rewards",
+                "sprite": "Vote_Rewards.gif",
+                "navi": _TBD_NAVI,
+                "description": _TBD_DESC,
+            },
+            {
+                "name": "Warper",
+                "sprite": "Warper.gif",
+                "navi": _TBD_NAVI,
+                "description": _TBD_DESC,
+            },
         ],
     },
     {
         "title": "Quest Hub",
+        "sprite_folder": "Quest_Hub",
         "npcs": [],
     },
     {
         "title": "Eden Grand Market",
+        "sprite_folder": "Eden_Grand_Market",
         "npcs": [],
     },
     {
         "title": "Evenil's Casino",
+        "sprite_folder": "Evenils_Casino",
         "npcs": [],
     },
 ]
