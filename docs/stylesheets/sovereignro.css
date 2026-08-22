@@ -235,6 +235,17 @@ input {
   color: var(--sr-red-light, var(--sr-red)) !important;
 }
 
+/* Page icons (from each page's `icon:` frontmatter) render as an inline
+   <svg> child of .md-nav__link, right before .md-ellipsis. Keep them gold
+   at all times, independent of the link's own text color (red section
+   headers, gold hover/active state on page links). */
+.md-nav__link > svg {
+  color: var(--sr-gold);
+  fill: var(--sr-gold);
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
 /* -------------------------------------------------------------------------
    Content / cards / admonitions
    ------------------------------------------------------------------------- */

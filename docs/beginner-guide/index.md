@@ -1,3 +1,7 @@
+---
+icon: material/sprout
+---
+
 # Beginner Guide
 
 A guide for new players who just created their first character.

@@ -1,3 +1,7 @@
+---
+icon: material/cog-outline
+---
+
 # Installation
 
 Step-by-step installation guide for the SovereignRO client.

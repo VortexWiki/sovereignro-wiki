@@ -1,5 +1,6 @@
 ---
 title: Download
+icon: material/download
 hide:
   - toc
 ---

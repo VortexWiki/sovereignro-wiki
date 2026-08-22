@@ -1,3 +1,7 @@
+---
+icon: material/compass-outline
+---
+
 # Getting Started
 
 Welcome to SovereignRO! This guide covers the very first steps to join the server and start your adventure.

@@ -1,3 +1,7 @@
+---
+icon: material/wrench-outline
+---
+
 # Troubleshooting
 
 Solutions to common technical issues.

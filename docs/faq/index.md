@@ -1,3 +1,7 @@
+---
+icon: material/help-circle-outline
+---
+
 # FAQ
 
 Frequently asked questions from the community.

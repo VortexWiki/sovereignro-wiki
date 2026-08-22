@@ -1,5 +1,6 @@
 ---
 title: Server Information
+icon: material/sword-cross
 hide:
   - toc
 ---
