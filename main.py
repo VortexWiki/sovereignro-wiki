@@ -255,6 +255,15 @@ def define_env(env):
         Material's native copy-code button (content.code.copy, already
         enabled in mkdocs.yml) picks it up automatically on hover, with
         zero custom JS.
+
+        Each section's heading is emitted as a real "## Title" markdown
+        line (not a raw <h2>), and its wrapping <div> carries the
+        `markdown` attribute (md_in_html), so Python-Markdown actually
+        parses that heading and the toc extension picks it up -- a plain
+        <h2> inside plain HTML is invisible to the page's table of
+        contents. The `{ .sov-npc-section-title }` attr_list suffix on
+        the heading line re-attaches the gold styling that a raw
+        class="..." attribute would otherwise have given it.
         """
 
         def _rows_html(npcs, sprite_folder):
@@ -299,10 +308,10 @@ def define_env(env):
                 )
 
             sections_html += (
-                '<div class="sov-npc-section">'
-                f'<h2 class="sov-npc-section-title">{_esc(section["title"])}</h2>'
+                '<div class="sov-npc-section" markdown>\n\n'
+                f'## {section["title"]} {{ .sov-npc-section-title }}\n\n'
                 f"{body_html}"
-                "</div>"
+                "\n\n</div>\n\n"
             )
 
         return Markup(sections_html)

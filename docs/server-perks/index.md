@@ -1,8 +1,6 @@
 ---
 icon: material/crown-outline
 title: Important NPCs
-hide:
-  - toc
 ---
 
 # Important NPCs
