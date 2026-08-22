@@ -58,10 +58,9 @@ markdown_extensions:
 nav:
   - SovereignRO:
       - server-info/index.md
-      - Download: download/index.md
+      - Download & Installation: download/index.md
   - Your Journey:
       - getting-started/index.md
-      - Installation: installation/index.md
       - Beginner Guide: beginner-guide/index.md
   - Features:
       - Feature Highlights: feature-highlights/index.md
