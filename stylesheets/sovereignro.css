@@ -1020,6 +1020,150 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
 }
 
 /* -------------------------------------------------------------------------
+   Important NPCs table
+   ------------------------------------------------------------------------- */
+
+.sov-npc-table-wrap {
+  margin: 0 0 2rem;
+  border: 1px solid var(--sr-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.md-typeset table.sov-npc-table {
+  width: 100%;
+  margin: 0;
+  background: var(--sr-bg-card);
+  border: none;
+  border-radius: 0;
+  border-collapse: collapse;
+}
+
+.md-typeset table.sov-npc-table thead tr {
+  background-color: transparent;
+}
+
+.md-typeset table.sov-npc-table th {
+  border-bottom: 1px solid var(--sr-border);
+  color: var(--sr-text);
+  font-family: "Sora", system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-align: left;
+  padding: 0.9rem 1.25rem;
+}
+
+.md-typeset table.sov-npc-table tbody tr {
+  background-color: transparent;
+}
+
+.md-typeset table.sov-npc-table tbody tr:not(:last-child) td {
+  border-bottom: 1px solid var(--sr-border);
+}
+
+.md-typeset table.sov-npc-table td {
+  padding: 1.1rem 1.25rem;
+  vertical-align: top;
+  color: var(--sr-text);
+  font-size: 0.92rem;
+}
+
+.sov-npc-cell-sprite {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.sov-npc-cell-sprite-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90px;
+}
+
+.sov-npc-cell-sprite img {
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 0.4rem;
+  object-fit: contain;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+.sov-npc-name {
+  display: block;
+  text-align: center;
+  font-weight: 700;
+  color: var(--sr-text);
+  font-size: 0.85rem;
+  white-space: normal;
+}
+
+.sov-npc-cell-navi {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.sov-npc-cell-navi .highlight {
+  margin: 0;
+}
+
+.sov-npc-cell-navi .highlight pre {
+  margin: 0;
+  background-color: var(--sr-bg-elevated);
+  border: 1px solid var(--sr-border);
+  border-radius: 6px;
+}
+
+.sov-npc-cell-navi .highlight code {
+  color: var(--sr-gold);
+  font-size: 0.82rem;
+}
+
+.sov-npc-cell-desc a {
+  color: var(--sr-gold);
+}
+
+.sov-npc-cell-desc strong {
+  color: var(--sr-text);
+}
+
+.sov-npc-table-empty {
+  padding: 1.5rem;
+  color: var(--sr-text-muted);
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .md-typeset table.sov-npc-table,
+  .md-typeset table.sov-npc-table thead,
+  .md-typeset table.sov-npc-table tbody,
+  .md-typeset table.sov-npc-table tr,
+  .md-typeset table.sov-npc-table th,
+  .md-typeset table.sov-npc-table td {
+    display: block;
+    width: auto;
+  }
+
+  .md-typeset table.sov-npc-table thead {
+    display: none;
+  }
+
+  .md-typeset table.sov-npc-table tbody tr {
+    border-bottom: 1px solid var(--sr-border);
+    padding: 1rem 0;
+  }
+
+  .sov-npc-cell-sprite {
+    text-align: left;
+  }
+
+  .sov-npc-cell-sprite img {
+    margin: 0 0 0.4rem;
+  }
+}
+
+/* -------------------------------------------------------------------------
    Search
    ------------------------------------------------------------------------- */
 
