@@ -15,6 +15,8 @@ appears in the markdown source, before the markdown/HTML is parsed.
 
 from markupsafe import Markup
 
+from data.npcs import NPCS
+
 
 def _esc(text):
     """Minimal HTML-escaping for text that isn't meant to carry markup."""
@@ -222,5 +224,57 @@ def define_env(env):
             f"<tbody>{rows_html}</tbody>"
             "</table>"
             f"{callout_html}"
+            "</div>"
+        )
+
+    @env.macro
+    def npc_table():
+        """Important NPCs table: sprite + name, a one-click-to-copy /navi
+        command, and a rich-text description. Reads its rows from
+        data/npcs.py (NPCS list) so new NPCs can be added there without
+        touching this macro or the page markdown.
+
+        {{ npc_table() }}
+
+        The /navi cell is built as a real Material "highlight" code block
+        (the same markup pymdownx.superfences/highlight produce), so
+        Material's native copy-code button (content.code.copy, already
+        enabled in mkdocs.yml) picks it up automatically on hover, with
+        zero custom JS.
+        """
+        if not NPCS:
+            return Markup(
+                '<p class="sov-npc-table-empty">'
+                "<em>No NPCs added yet.</em></p>"
+            )
+
+        rows_html = ""
+        for npc in NPCS:
+            sprite_path = f"../../assets/sprites/npcs/{npc['sprite']}"
+            rows_html += (
+                '<tr class="sov-npc-row">'
+                '<td class="sov-npc-cell-sprite">'
+                '<div class="sov-npc-cell-sprite-inner">'
+                f'<img src="{_esc(sprite_path)}" alt="{_esc(npc["name"])}" loading="lazy">'
+                f'<span class="sov-npc-name">{_esc(npc["name"])}</span>'
+                "</div>"
+                "</td>"
+                '<td class="sov-npc-cell-navi">'
+                '<div class="highlight"><pre><span></span><code>'
+                f"{_esc(npc['navi'])}"
+                "</code></pre></div>"
+                "</td>"
+                f'<td class="sov-npc-cell-desc">{npc["description"]}</td>'
+                "</tr>"
+            )
+
+        return Markup(
+            '<div class="sov-npc-table-wrap">'
+            '<table class="sov-npc-table">'
+            "<thead><tr>"
+            "<th>NPC</th><th>Location</th><th>Description</th>"
+            "</tr></thead>"
+            f"<tbody>{rows_html}</tbody>"
+            "</table>"
             "</div>"
         )

@@ -1,7 +1,12 @@
 ---
 icon: material/crown-outline
+title: Important NPCs
+hide:
+  - toc
 ---
 
-# Server Perks
+# Important NPCs
 
-*(content to be added)*
+Key NPCs around town that make your life easier: banking, storage, rewards, and more.
+
+{{ npc_table() }}
