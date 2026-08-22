@@ -1151,6 +1151,10 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
   transform: translateY(-50%);
 }
 
+.sov-npc-cell-desc {
+  min-width: 200px;
+}
+
 .sov-npc-cell-desc a {
   color: var(--sr-gold);
 }
