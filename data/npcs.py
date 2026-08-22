@@ -31,4 +31,10 @@ Example entry (commented out, not real data):
 """
 
 NPCS = [
+    {
+        "name": "Expert Helper Magnus",
+        "sprite": "Expert_Helper_Magnus.gif",
+        "navi": "/navi eden_night 80/112",
+        "description": "<em>(description on hold)</em>",
+    },
 ]
