@@ -50,8 +50,8 @@ Example entry (commented out, not real data):
 # Shared placeholder shown for NPCs whose real /navi and description
 # haven't been provided yet. Swap these two fields out per-NPC as the
 # real data comes in; the sprite is already the real uploaded file.
-_TBD_NAVI = "/navi (à venir)"
-_TBD_DESC = "<em>(description à venir)</em>"
+_TBD_NAVI = "/navi (TBD)"
+_TBD_DESC = "<em>(description TBD)</em>"
 
 SECTIONS = [
     {
