@@ -1062,6 +1062,7 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
   border: none;
   border-radius: 0;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .md-typeset table.sov-npc-table thead tr {
@@ -1093,9 +1094,10 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
   font-size: 0.92rem;
 }
 
-.sov-npc-cell-npc {
-  width: 260px;
-  min-width: 220px;
+.md-typeset table.sov-npc-table th:first-child,
+.md-typeset table.sov-npc-table td.sov-npc-cell-npc {
+  width: 170px;
+  border-right: 1px solid var(--sr-border);
 }
 
 .sov-npc-cell-sprite-inner {
@@ -1124,40 +1126,35 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
   white-space: normal;
 }
 
-.sov-npc-cell-npc .highlight {
+.sov-npc-navi-btn {
+  display: block;
+  width: 100%;
   margin: 0;
-}
-
-.sov-npc-cell-npc .highlight pre {
-  margin: 0;
-  background-color: var(--sr-bg-elevated);
-  border: 1px solid var(--sr-border);
+  padding: 0.5rem 0.5rem;
+  background-color: var(--sr-gold-soft);
+  border: 1px solid var(--sr-gold-border);
   border-radius: 6px;
-  /* Material's copy button (.md-code__nav) sits at top: .25em; right: .25em
-     inside this <pre>, absolutely positioned. On a short single-line
-     command like ours it has no room of its own and ends up sitting on
-     top of the last characters instead of beside them. Reserve space for
-     it on the right so the code text always wraps before that zone. */
-  padding-right: 2.25rem;
-  white-space: nowrap;
-}
-
-.sov-npc-cell-npc .highlight code {
   color: var(--sr-gold);
-  font-size: 0.82rem;
+  font-family: "Sora", system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
-.sov-npc-cell-npc .md-code__nav {
-  /* Keep the button vertically centered against the single line of text
-     instead of pinned to the top, now that the <pre> has extra right
-     padding to make room for it. */
-  top: 50%;
-  transform: translateY(-50%);
+.sov-npc-navi-btn:hover {
+  background-color: var(--sr-gold);
+  color: var(--sr-bg);
 }
 
-.sov-npc-cell-desc {
-  min-width: 280px;
+.sov-npc-navi-btn--copied {
+  background-color: var(--sr-gold);
+  color: var(--sr-bg);
+  border-color: var(--sr-gold);
 }
+
 
 .sov-npc-cell-desc a {
   color: var(--sr-gold);
@@ -1211,6 +1208,12 @@ a.md-nav__link[href^="https://vortexwiki.github.io/sovereignro-mvp-tracker"]::be
 
   .sov-npc-name {
     text-align: left;
+  }
+
+  .sov-npc-navi-btn {
+    display: inline-block;
+    width: auto;
+    margin-top: 0.4rem;
   }
 }
 
