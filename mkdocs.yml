@@ -63,12 +63,12 @@ nav:
       - getting-started/index.md
       - Installation: installation/index.md
       - Beginner Guide: beginner-guide/index.md
-  - Feature Highlights:
-      - feature-highlights/index.md
+  - Features:
+      - Feature Highlights: feature-highlights/index.md
   - Server Perks:
-      - server-perks/index.md
-  - Player's Guide:
-      - players-guide/index.md
+      - Important NPCs: server-perks/index.md
+  - Community Guides:
+      - Player's Guide: players-guide/index.md
   - Dungeons & Instances:
       - dungeons-instances/index.md
   - Events & Activities:
